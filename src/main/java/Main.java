@@ -13,6 +13,9 @@ public class Main {
             BookKeeping bookKeeping = new BookKeeping();
             bookKeeping.getData(statement);
 
+            Controlling controlling = new Controlling();
+            controlling.getData(statement);
+
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {
