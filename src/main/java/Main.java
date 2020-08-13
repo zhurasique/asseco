@@ -1,10 +1,13 @@
+import dbconfig.JDBCConnection;
+
 import java.sql.*;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@192.168.0.234:1521:xe", "system", "admin");
+            Connection conn = DriverManager.getConnection(JDBCConnection.URL, JDBCConnection.user, JDBCConnection.password);
+            Statement statement = conn.createStatement();
+
             if (conn != null) {
                 System.out.println("Connected to the database!");
             } else {
@@ -19,11 +22,11 @@ public class Main {
                 System.out.println(last);
             }
 
+
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
