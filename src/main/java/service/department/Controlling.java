@@ -8,6 +8,10 @@ import java.sql.Statement;
 
 public class Controlling implements DbRequest {
     public void getData(Statement statement) throws SQLException {
+
+        // if findings data wouldn't be changed as wrote in document, we should create indexes on Oracle DB for search optimization
+        // indexes should be created for all columns after 'WHERE' statement
+
         ResultSet rs = statement.executeQuery(
                 "SELECT DISTINCT Departments.department_name " +
                         "FROM Job_history " +
