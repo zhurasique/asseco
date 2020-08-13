@@ -1,4 +1,6 @@
 import dbconfig.JDBCConnection;
+import service.department.BookKeeping;
+import service.department.Controlling;
 
 import java.sql.*;
 
@@ -8,20 +10,8 @@ public class Main {
             Connection conn = DriverManager.getConnection(JDBCConnection.URL, JDBCConnection.user, JDBCConnection.password);
             Statement statement = conn.createStatement();
 
-            if (conn != null) {
-                System.out.println("Connected to the database!");
-            } else {
-                System.out.println("Failed to make connection!");
-            }
-
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT Jobs.job_title FROM Job_history INNER JOIN Jobs ON Job_history.job_id = Jobs.job_id");
-            while(rs.next()){
-                String last = rs.getString("job_title");
-
-                System.out.println(last);
-            }
-
+            BookKeeping bookKeeping = new BookKeeping();
+            bookKeeping.getData(statement);
 
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
